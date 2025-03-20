@@ -4,7 +4,6 @@ from wtforms import StringField, SubmitField, PasswordField, BooleanField, Valid
 from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms.widgets import TextArea
 from flask_wtf.file import FileAllowed
-from flask_ckeditor import CKEditorField
 
 class LoginForm(FlaskForm):
 	username = StringField("Username", validators=[DataRequired()])
@@ -17,4 +16,5 @@ class UserForm(FlaskForm):
 	email = StringField("Email", validators=[DataRequired()])
 	password_hash = PasswordField('Password', validators=[DataRequired(), EqualTo('password_hash2', message='Passwords Must Match!')])
 	password_hash2 = PasswordField('Confirm Password', validators=[DataRequired()])
+	role = SelectField('Role', choices=[('manager', 'Manager'), ('employee', 'Employee')], validators=[DataRequired()])
 	submit = SubmitField("Submit")
